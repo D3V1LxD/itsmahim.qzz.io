@@ -7,10 +7,13 @@
     
     <link rel="icon" type="image/jpg" href="icon.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script>
         tailwind.config = {
@@ -59,30 +62,9 @@
                         inset 0 1px 0 rgba(255, 255, 255, 0.5),
                         inset 0 -1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
-            overflow: hidden;
             padding: 2rem;
             width: 100%;
             height: 100%;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-        }
-
-        .glass-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3));
         }
 
         /* Custom Scrollbar */
@@ -123,19 +105,82 @@
             transform: translateY(-50%) translateX(20px);
         }
         
-        /* --- Multi-Color Glow Effect for Icons --- */
-        @keyframes multi-color-glow {
-            0%, 100% { filter: drop-shadow(0 0 5px #AFFF0C); color: #AFFF0C; }
-            33% { filter: drop-shadow(0 0 5px #7886C7); color: #7886C7; }
-            66% { filter: drop-shadow(0 0 5px #C778B4); color: #C778B4;}
+        /* --- Animated Button Effect --- */
+        .animated-btn {
+            position: relative;
+            display: inline-block;
+            padding: 15px 20px;
+            color: #AFFF0C;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.5s;
+            letter-spacing: 4px;
+            overflow: hidden;
+        }
+        .animated-btn:hover {
+            background: #AFFF0C;
+            color: #050801;
+            box-shadow: 0 0 5px #AFFF0C,
+                        0 0 25px #AFFF0C,
+                        0 0 50px #AFFF0C,
+                        0 0 200px #AFFF0C;
+        }
+        .animated-btn span {
+            position: absolute;
+            display: block;
+        }
+        .animated-btn span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg,transparent,#AFFF0C);
+            animation: animate1 1s linear infinite;
+        }
+        @keyframes animate1 {
+            0% { left: -100%; }
+            50%,100% { left: 100%; }
+        }
+        .animated-btn span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg,transparent,#AFFF0C);
+            animation: animate2 1s linear infinite;
+            animation-delay: 0.25s;
+        }
+        @keyframes animate2 {
+            0% { top: -100%; }
+            50%,100% { top: 100%; }
+        }
+        .animated-btn span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg,transparent,#AFFF0C);
+            animation: animate3 1s linear infinite;
+            animation-delay: 0.50s;
+        }
+        @keyframes animate3 {
+            0% { right: -100%; }
+            50%,100% { right: 100%; }
+        }
+        .animated-btn span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg,transparent,#AFFF0C);
+            animation: animate4 1s linear infinite;
+            animation-delay: 0.75s;
+        }
+        @keyframes animate4 {
+            0% { bottom: -100%; }
+            50%,100% { bottom: 100%; }
         }
 
-        .social-icon:hover i,
-        .icon-nav-link:hover i,
-        .styled-btn:hover i,
-        .service-icon:hover {
-            animation: multi-color-glow 3s linear infinite;
-        }
 
         /* Tab Content Styling */
         .content-section {
@@ -158,16 +203,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* --- Button Enhancements --- */
-        .styled-btn {
-            border: 2px solid;
-            transition: all 0.3s ease-in-out;
-        }
-        .btn-dark { border-color: #312F36; }
-        .btn-dark:hover { border-color: #AFFF0C; box-shadow: 0 0 15px #AFFF0C; }
-        .btn-lime { border-color: #AFFF0C; }
-        .btn-lime:hover { box-shadow: 0 0 20px #AFFF0C; }
         
         /* Contact Form Styles */
         #contact-form input, #contact-form textarea {
@@ -201,11 +236,6 @@
         .swiper-button-next:hover, .swiper-button-prev:hover { transform: scale(1.2); }
         .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.5rem !important; }
         .swiper-slide { height: auto; }
-
-        .view-project-btn { @apply inline-block text-center bg-lime-green text-eerie-black font-semibold py-2 px-5 rounded-lg transition-all duration-300 group border-2 border-lime-green; }
-        .view-project-btn:hover { box-shadow: 0 0 15px #AFFF0C; }
-        .view-project-btn .btn-icon { @apply inline-block transition-transform duration-300; }
-        .view-project-btn:hover .btn-icon { @apply transform translate-x-1; }
     </style>
 </head>
 <body class="bg-eerie-black text-light-gray font-sans">
@@ -228,9 +258,9 @@
             <div class="flex flex-col lg:flex-row gap-8 items-center">
                 
                 <aside class="lg:w-1/3 w-full reveal">
-                    <div class="glass-card">
-                        <div class="text-center w-full pt-16">
-                            <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden -mt-32 mb-6 border-4 border-jet shadow-lg">
+                    <div class="glass-card pt-20">
+                        <div class="text-center w-full">
+                            <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden -mt-36 mb-6 border-4 border-jet shadow-lg">
                                 <img src="profile.png" alt="Md. Mahim Khan" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/160x160/312F36/A1A1A1?text=Mahim';">
                             </div>
                             <h1 class="text-3xl font-bold text-white">Md. Mahim Khan</h1>
@@ -244,11 +274,13 @@
                             </div>
     
                             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-                                <a href="cv.pdf" download class="styled-btn btn-dark bg-jet text-light-gray font-semibold py-3 px-6 rounded-xl hover:bg-raisin-black hover:text-white transition-all w-full flex items-center justify-center gap-2">
-                                    <i class="fas fa-download"></i> Download CV
+                                <a href="cv.pdf" download class="animated-btn">
+                                    <span></span><span></span><span></span><span></span>
+                                    <i class="fas fa-download mr-2"></i> Download CV
                                 </a>
-                                <a href="#" class="styled-btn btn-lime bg-lime-green text-eerie-black font-semibold py-3 px-6 rounded-xl hover:bg-opacity-80 transition-all w-full flex items-center justify-center gap-2 nav-contact-btn">
-                                   Contact Me <i class="fas fa-paper-plane"></i>
+                                <a href="#" class="animated-btn nav-contact-btn">
+                                    <span></span><span></span><span></span><span></span>
+                                   Contact Me <i class="fas fa-paper-plane ml-2"></i>
                                 </a>
                             </div>
                         </div>
@@ -295,26 +327,26 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="project-card">
-                                            <img src="image1.jpg" alt="Maxsurf Hull Design" class="w-full h-40 object-cover">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Maxsurf Hull Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Utilizing Maxsurf to create and refine high-performance hull forms.</p><a href="#" class="view-project-btn mt-auto self-start text-sm py-2 px-4">View <i class="fas fa-arrow-right btn-icon"></i></a></div>
+                                            <img src="image1.jpg" alt="Maxsurf Hull Design" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=Hull+Design';">
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Maxsurf Hull Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Utilizing Maxsurf to create and refine high-performance hull forms.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="project-card">
-                                            <img src="image2.jpg" alt="CAESES Propeller Design" class="w-full h-40 object-cover">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CAESES Propeller Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Leveraging CAESES to design custom propeller geometries.</p><a href="#" class="view-project-btn mt-auto self-start text-sm py-2 px-4">View <i class="fas fa-arrow-right btn-icon"></i></a></div>
+                                            <img src="image2.jpg" alt="CAESES Propeller Design" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=Propeller';">
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CAESES Propeller Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Leveraging CAESES to design custom propeller geometries.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="project-card">
-                                            <img src="image3.jpg" alt="Shell Expansion" class="w-full h-40 object-cover">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Shell Expansion</h4><p class="text-sm text-light-gray flex-grow mb-4">Creating 2D shell expansion plans from 3D models.</p><a href="#" class="view-project-btn mt-auto self-start text-sm py-2 px-4">View <i class="fas fa-arrow-right btn-icon"></i></a></div>
+                                            <img src="image3.jpg" alt="Shell Expansion" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=Shell+Plan';">
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Shell Expansion</h4><p class="text-sm text-light-gray flex-grow mb-4">Creating 2D shell expansion plans from 3D models.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="project-card">
-                                            <img src="image4.jpg" alt="CFD Analysis of Hull" class="w-full h-40 object-cover">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CFD Analysis of Hull</h4><p class="text-sm text-light-gray flex-grow mb-4">Conducting CFD simulations to analyze water flow.</p><a href="#" class="view-project-btn mt-auto self-start text-sm py-2 px-4">View <i class="fas fa-arrow-right btn-icon"></i></a></div>
+                                            <img src="image4.jpg" alt="CFD Analysis of Hull" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=CFD+Analysis';">
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CFD Analysis of Hull</h4><p class="text-sm text-light-gray flex-grow mb-4">Conducting CFD simulations to analyze water flow.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -348,8 +380,9 @@
                                     <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded-lg">
                                 </div>
                                 <textarea name="message" placeholder="Your Message" required rows="5" class="w-full p-3 rounded-lg"></textarea>
-                                <button type="submit" id="submit-btn" class="styled-btn btn-lime w-full bg-lime-green text-eerie-black font-semibold py-3 px-6 rounded-xl hover:bg-opacity-80 transition-all flex items-center justify-center gap-2">
-                                    Send Message <i class="fas fa-paper-plane"></i>
+                                <button type="submit" id="submit-btn" class="animated-btn w-full">
+                                    <span></span><span></span><span></span><span></span>
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
                                 </button>
                             </form>
                             <div id="form-result" class="mt-4 text-center font-semibold"></div>
