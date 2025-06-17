@@ -39,15 +39,12 @@
         /* --- Video Background --- */
         #video-background {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: -2;
-            transform: translateX(-50%) translateY(-50%);
-            background-size: cover;
             transition: transform 0.2s ease-out;
         }
 
@@ -455,7 +452,7 @@
                 if (scrollableHeight > 0) {
                     const scrollProgress = window.scrollY / scrollableHeight;
                     const zoomLevel = 1 + scrollProgress * 0.25; 
-                    background.style.transform = `translateX(-50%) translateY(-50%) scale(${zoomLevel})`;
+                    background.style.transform = `scale(${zoomLevel})`;
                 }
             });
 
@@ -547,8 +544,8 @@
                 pagination: { el: '.swiper-pagination', clickable: true },
                 navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
                 breakpoints: {
-                    640: { slidesPerView: 2, spaceBetween: 20 },
-                    320: { slidesPerView: 1, spaceBetween: 16 }
+                    640: { slidesPerView: 2, spaceBetween: 24 },
+                    320: { slidesPerView: 1, spaceBetween: 20 }
                 }
             });
 
