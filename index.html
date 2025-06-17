@@ -65,6 +65,12 @@
             padding: 2rem;
             width: 100%;
             height: 100%;
+            transition: transform 0.4s ease-out; /* Added for zoom effect */
+        }
+        
+        /* --- Main Content Zoom on Hover --- */
+        main:hover .glass-card {
+            transform: scale(1.02); /* Slightly zoom in on hover */
         }
 
         /* Custom Scrollbar */
@@ -124,6 +130,7 @@
                         0 0 25px #AFFF0C,
                         0 0 50px #AFFF0C,
                         0 0 200px #AFFF0C;
+            animation: rgb-glow-animation 2.5s linear infinite;
         }
         .animated-btn span {
             position: absolute;
@@ -179,6 +186,36 @@
         @keyframes animate4 {
             0% { bottom: -100%; }
             50%,100% { bottom: 100%; }
+        }
+
+        /* --- Icon RGB Glow Effect --- */
+        @keyframes rgb-glow-animation {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        .social-icon, .service-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: #fff;
+            transform: scale(1.2);
+            text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7);
+            animation: rgb-glow-animation 2.5s linear infinite;
+        }
+        
+        .service-icon-container:hover .service-icon {
+            color: #fff;
+            transform: scale(1.1);
+            text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7);
+            animation: rgb-glow-animation 2.5s linear infinite;
+        }
+        
+        .icon-nav-link:not(.active):hover > i {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7);
+            animation: rgb-glow-animation 2.5s linear infinite;
         }
 
 
@@ -267,10 +304,10 @@
                             <p class="text-lime-green mt-1 h-7"><span id="typed-subtitle"></span></p>
                             
                             <div class="flex justify-center space-x-4 mt-6">
-                                <a href="mailto:khanmahim1002@gmail.com" title="Email" class="social-icon text-light-gray transition-colors"><i class="fas fa-envelope fa-lg"></i></a>
-                                <a href="https://www.linkedin.com/in/mahimkhan" target="_blank" title="LinkedIn" class="social-icon text-light-gray transition-colors"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                                <a href="https://www.facebook.com/storiesofmahim" target="_blank" title="Facebook" class="social-icon text-light-gray transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                <a href="https://wa.me/message/2LYOOPSTBAQEE1" target="_blank" title="WhatsApp" class="social-icon text-light-gray transition-colors"><i class="fab fa-whatsapp fa-lg"></i></a>
+                                <a href="mailto:khanmahim1002@gmail.com" title="Email" class="social-icon text-light-gray"><i class="fas fa-envelope fa-lg"></i></a>
+                                <a href="https://www.linkedin.com/in/mahimkhan" target="_blank" title="LinkedIn" class="social-icon text-light-gray"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                                <a href="https://www.facebook.com/storiesofmahim" target="_blank" title="Facebook" class="social-icon text-light-gray"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                <a href="https://wa.me/message/2LYOOPSTBAQEE1" target="_blank" title="WhatsApp" class="social-icon text-light-gray"><i class="fab fa-whatsapp fa-lg"></i></a>
                             </div>
     
                             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
@@ -280,7 +317,7 @@
                                 </a>
                                 <a href="#" class="animated-btn nav-contact-btn">
                                     <span></span><span></span><span></span><span></span>
-                                   Contact Me <i class="fas fa-paper-plane ml-2"></i>
+                                    Contact Me <i class="fas fa-paper-plane ml-2"></i>
                                 </a>
                             </div>
                         </div>
@@ -297,8 +334,8 @@
                             <div class="border-t border-jet pt-6 mt-6">
                                  <h4 class="text-xl font-bold text-white mb-6">Education</h4>
                                  <div class="border-l-2 border-jet space-y-8 pl-8">
-                                    <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Nov 2022 - Oct 2026</p><h5 class="text-lg font-semibold text-white mt-1">Bachelor of Engineering, Naval Architecture & Offshore Engineering</h5><p class="text-md text-gray-400">Bangladesh Maritime University</p></div>
-                                    <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jun 2019 - Dec 2021</p><h5 class="text-lg font-semibold text-white mt-1">Higher Secondary School Certificate</h5><p class="text-md text-gray-400">Ghatail Cantonment Public School & College</p></div>
+                                     <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Nov 2022 - Oct 2026</p><h5 class="text-lg font-semibold text-white mt-1">Bachelor of Engineering, Naval Architecture & Offshore Engineering</h5><p class="text-md text-gray-400">Bangladesh Maritime University</p></div>
+                                     <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jun 2019 - Dec 2021</p><h5 class="text-lg font-semibold text-white mt-1">Higher Secondary School Certificate</h5><p class="text-md text-gray-400">Ghatail Cantonment Public School & College</p></div>
                                  </div>
                             </div>
                             <div class="border-t border-jet pt-6 mt-8 reveal">
@@ -310,17 +347,17 @@
                                  </ul>
                             </div>
                         </section>
-    
+        
                         <section id="services" class="content-section reveal">
                             <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">My Services</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-drafting-compass fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Design & Modeling</h4><p class="mt-1">Creating efficient ship designs with AutoCAD, Rhino 3D, Solidworks and Maxsurf.</p></div></div>
-                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-wave-square fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Engineering Analysis</h4><p class="mt-1">Performing complex simulations and structural analysis using ANSYS.</p></div></div>
-                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-code fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Scripting & Automation</h4><p class="mt-1">Developing custom scripts with Python and C++ to automate design tasks.</p></div></div>
-                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-users-cog fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Team Leadership</h4><p class="mt-1">Leading and managing teams effectively to ensure project success.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-drafting-compass fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Design & Modeling</h4><p class="mt-1">Creating efficient ship designs with AutoCAD, Rhino 3D, Solidworks and Maxsurf.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-wave-square fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Engineering Analysis</h4><p class="mt-1">Performing complex simulations and structural analysis using ANSYS.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-code fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Scripting & Automation</h4><p class="mt-1">Developing custom scripts with Python and C++ to automate design tasks.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-users-cog fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Team Leadership</h4><p class="mt-1">Leading and managing teams effectively to ensure project success.</p></div></div>
                             </div>
                         </section>
-    
+        
                         <section id="projects" class="content-section overflow-hidden reveal">
                             <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">Projects</h2>
                             <div class="swiper-container projects-slider">
@@ -353,28 +390,28 @@
                                 <div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                             </div>
                         </section>
-                         
+                        
                         <section id="experience" class="content-section reveal">
                              <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">Experience</h2>
                              <div class="border-l-2 border-jet space-y-8 pl-8">
-                                <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
-                                <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2024 - April 2025</p><h4 class="text-xl font-bold text-white mt-1">Assistant Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
-                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2023 - April 2024</p><h4 class="text-xl font-bold text-white mt-1">Excecutive of Design & It</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
-                                <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Publicity Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
-                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2024 - Dec 2024</p><h4 class="text-xl font-bold text-white mt-1">Design & IT Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
+                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
+                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2024 - April 2025</p><h4 class="text-xl font-bold text-white mt-1">Assistant Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
+                                  <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2023 - April 2024</p><h4 class="text-xl font-bold text-white mt-1">Excecutive of Design & It</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
+                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Publicity Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
+                                  <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2024 - Dec 2024</p<h4 class="text-xl font-bold text-white mt-1">Design & IT Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
                              </div>
                         </section>
-    
+        
                         <section id="contact" class="content-section reveal">
                             <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">Contact Me</h2>
                             <h3 class="text-4xl font-bold text-white mb-2">Let's Work Together!</h3>
                             <p class="mb-6">Have a project in mind or just want to say hi? Fill out the form below.</p>
-    
+        
                             <form id="contact-form" class="space-y-4">
                                 <input type="hidden" name="access_key" value="de182f8a-d20c-4713-bcd9-aa2db25e3795">
                                 <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
                                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-    
+        
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded-lg">
                                     <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded-lg">
