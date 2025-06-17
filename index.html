@@ -36,6 +36,37 @@
         }
     </script>
     <style>
+        /* --- Asteroid Animation --- */
+        #asteroid-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .asteroid {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+
         /* --- Video Background --- */
         #video-background {
             position: fixed;
@@ -274,6 +305,8 @@
 </head>
 <body class="bg-eerie-black text-light-gray font-sans">
 
+    <div id="asteroid-container"></div>
+
     <video autoplay muted loop playsinline id="video-background">
         <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -432,6 +465,30 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+             // --- ASTEROID CREATION ---
+            const asteroidContainer = document.getElementById('asteroid-container');
+            const numAsteroids = 20;
+
+            function createAsteroid() {
+                for (let i = 0; i < numAsteroids; i++) {
+                    const asteroid = document.createElement('div');
+                    asteroid.classList.add('asteroid');
+
+                    const size = Math.random() * 6 + 2; // Size between 2px and 8px
+                    const left = Math.random() * 100; // Random horizontal start
+                    const duration = Math.random() * 8 + 5; // Duration between 5s and 13s
+                    const delay = Math.random() * 10; // Delay up to 10s
+
+                    asteroid.style.width = `${size}px`;
+                    asteroid.style.height = `${size}px`;
+                    asteroid.style.left = `${left}vw`;
+                    asteroid.style.animationDuration = `${duration}s`;
+                    asteroid.style.animationDelay = `${delay}s`;
+
+                    asteroidContainer.appendChild(asteroid);
+                }
+            }
+
             // --- SCROLL-REVEAL ANIMATION ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -556,8 +613,9 @@
                 loop: true, smartBackspace: true
             });
 
-            // Set initial active tab
+            // Set initial active tab and create asteroids
             switchTab('about');
+            createAsteroid();
         });
     </script>
 </body>
