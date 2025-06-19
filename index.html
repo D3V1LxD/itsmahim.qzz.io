@@ -36,69 +36,52 @@
         }
     </script>
     <style>
-        /* --- Asteroid Animation --- */
-        #asteroid-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .asteroid {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) translateX(20px);
-                opacity: 0;
-            }
-        }
-
         /* --- Video Background --- */
         #video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
             z-index: -2;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: cover;
             transition: transform 0.2s ease-out;
         }
 
-        /* --- New Glass Card Effect --- */
+        /* On screens smaller than 1024px, hide the video and show a static image */
+        @media (max-width: 1023px) {
+            #video-background {
+                display: none;
+            }
+            body {
+                background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+        }
+
+        /* --- Glass Card Effect --- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background: rgba(30, 28, 33, 0.001); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             padding: 2rem;
             width: 100%;
-            height: 100%;
-            transition: transform 0.4s ease-out; /* Added for zoom effect */
         }
         
-        /* --- Main Content Zoom on Hover --- */
+        main .glass-card {
+             transition: transform 0.3s ease-in-out;
+        }
+
         main:hover .glass-card {
-            transform: scale(1.02); /* Slightly zoom in on hover */
+            transform: scale(1.02);
         }
 
         /* Custom Scrollbar */
@@ -139,10 +122,27 @@
             transform: translateY(-50%) translateX(20px);
         }
         
+        /* --- Multi-Color Glow Effect for Icons --- */
+        @keyframes multi-color-glow {
+            0%, 100% { filter: drop-shadow(0 0 5px #AFFF0C); }
+            33% { filter: drop-shadow(0 0 5px #7886C7); }
+            66% { filter: drop-shadow(0 0 5px #C778B4); }
+        }
+
+        .social-icon:hover i,
+        .icon-nav-link:hover i,
+        .animated-btn:hover i,
+        .service-icon:hover,
+        .view-project-btn:hover .btn-icon {
+            animation: multi-color-glow 3s linear infinite;
+        }
+        
         /* --- Animated Button Effect --- */
         .animated-btn {
             position: relative;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 15px 20px;
             color: #AFFF0C;
             text-decoration: none;
@@ -150,6 +150,9 @@
             transition: 0.5s;
             letter-spacing: 4px;
             overflow: hidden;
+            border-radius: 10px;
+            background: rgba(49, 47, 54, 0.7);
+            border: 1px solid #312F36;
         }
         .animated-btn:hover {
             background: #AFFF0C;
@@ -157,8 +160,7 @@
             box-shadow: 0 0 5px #AFFF0C,
                         0 0 25px #AFFF0C,
                         0 0 50px #AFFF0C,
-                        0 0 200px #AFFF0C;
-            animation: rgb-glow-animation 2.5s linear infinite;
+                        0 0 100px #AFFF0C;
         }
         .animated-btn span {
             position: absolute;
@@ -216,63 +218,6 @@
             50%,100% { bottom: 100%; }
         }
 
-        /* --- Icon RGB Glow Effect & Tooltips --- */
-        @keyframes rgb-glow-animation {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-        
-        .social-icon, .service-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            color: #fff;
-            transform: scale(1.2);
-            text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7);
-            animation: rgb-glow-animation 2.5s linear infinite;
-        }
-        
-        .social-icon .social-icon-tooltip {
-            position: absolute;
-            bottom: 150%; /* Position above the icon */
-            left: 50%;
-            transform: translateX(-50%) translateY(10px); /* Start slightly lower */
-            background-color: #1E1C21; 
-            color: #FFFFFF;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            white-space: nowrap;
-            font-weight: 600;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
-            z-index: 1001;
-        }
-
-        .social-icon:hover .social-icon-tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0); /* Move to final position */
-        }
-
-        .service-icon-container:hover .service-icon {
-            color: #fff;
-            transform: scale(1.1);
-            text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7);
-            animation: rgb-glow-animation 2.5s linear infinite;
-        }
-        
-        .icon-nav-link:not(.active):hover > i {
-            color: #fff;
-            text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7);
-            animation: rgb-glow-animation 2.5s linear infinite;
-        }
-
-
         /* Tab Content Styling */
         .content-section {
             display: none;
@@ -310,12 +255,11 @@
         
         /* Custom Swiper Styles & Project Card */
         .project-card {
-             background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            background: rgba(30, 28, 33, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
         }
         
@@ -327,11 +271,105 @@
         .swiper-button-next:hover, .swiper-button-prev:hover { transform: scale(1.2); }
         .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.5rem !important; }
         .swiper-slide { height: auto; }
+
+        /* --- Chat Bubble Styles --- */
+        #chat-bubble {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: #AFFF0C;
+            color: #1E1C21;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(175, 255, 12, 0.4);
+            z-index: 1010;
+            transition: transform 0.3s ease;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        #chat-window {
+            position: fixed;
+            bottom: 6.5rem;
+            right: 2rem;
+            width: 90%;
+            max-width: 400px;
+            height: 70vh;
+            max-height: 500px;
+            background: #1E1C21;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+            z-index: 1009;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+        }
+        #chat-window.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #312F36;
+        }
+        #close-chat {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .btn-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .animated-btn:hover .btn-icon {
+            transform: translateX(4px);
+        }
+
+        /* Email Tooltip */
+        .email-tooltip {
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background-color: #1E1C21;
+            color: #FFFFFF;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1002;
+        }
+
+        .email-icon:hover .email-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1) translateY(-10px);
+        }
     </style>
 </head>
-<body class="bg-eerie-black text-light-gray font-sans">
-
-    <div id="asteroid-container"></div>
+<body class="text-light-gray font-sans">
 
     <video autoplay muted loop playsinline id="video-background">
         <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" type="video/mp4">
@@ -351,22 +389,22 @@
             <div class="flex flex-col lg:flex-row gap-8 items-center">
                 
                 <aside class="lg:w-1/3 w-full reveal">
-                    <div class="glass-card pt-20">
+                    <div class="glass-card pt-24 relative">
+                        <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden border-4 border-jet shadow-lg absolute -top-20 left-1/2 -translate-x-1/2">
+                            <img src="profile.png" alt="Md. Mahim Khan" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/160x160/312F36/A1A1A1?text=Mahim';">
+                        </div>
                         <div class="text-center w-full">
-                            <div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden -mt-36 mb-6 border-4 border-jet shadow-lg">
-                                <img src="profile.png" alt="Md. Mahim Khan" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/160x160/312F36/A1A1A1?text=Mahim';">
-                            </div>
                             <h1 class="text-3xl font-bold text-white">Md. Mahim Khan</h1>
                             <p class="text-lime-green mt-1 h-7"><span id="typed-subtitle"></span></p>
                             
                             <div class="flex justify-center space-x-4 mt-6">
-                                <a href="mailto:khanmahim1002@gmail.com" title="Email" class="social-icon text-light-gray relative">
+                                <a href="mailto:khanmahim1002@gmail.com" title="Email" class="social-icon email-icon relative text-light-gray transition-colors">
                                     <i class="fas fa-envelope fa-lg"></i>
-                                    <span class="social-icon-tooltip">mahim.naoe@gmail.com</span>
+                                    <span class="email-tooltip">khanmahim1002@gmail.com</span>
                                 </a>
-                                <a href="https://www.linkedin.com/in/mahimkhan" target="_blank" title="LinkedIn" class="social-icon text-light-gray"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                                <a href="https://www.facebook.com/storiesofmahim" target="_blank" title="Facebook" class="social-icon text-light-gray"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                <a href="https://wa.me/message/2LYOOPSTBAQEE1" target="_blank" title="WhatsApp" class="social-icon text-light-gray"><i class="fab fa-whatsapp fa-lg"></i></a>
+                                <a href="https://www.linkedin.com/in/mahimkhan" target="_blank" title="LinkedIn" class="social-icon text-light-gray transition-colors"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                                <a href="https://www.facebook.com/storiesofmahim" target="_blank" title="Facebook" class="social-icon text-light-gray transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                <a href="https://wa.me/message/2LYOOPSTBAQEE1" target="_blank" title="WhatsApp" class="social-icon text-light-gray transition-colors"><i class="fab fa-whatsapp fa-lg"></i></a>
                             </div>
     
                             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
@@ -376,7 +414,7 @@
                                 </a>
                                 <a href="#" class="animated-btn nav-contact-btn">
                                     <span></span><span></span><span></span><span></span>
-                                    Contact Me <i class="fas fa-paper-plane ml-2"></i>
+                                   Contact Me <i class="fas fa-paper-plane ml-2"></i>
                                 </a>
                             </div>
                         </div>
@@ -393,8 +431,8 @@
                             <div class="border-t border-jet pt-6 mt-6">
                                  <h4 class="text-xl font-bold text-white mb-6">Education</h4>
                                  <div class="border-l-2 border-jet space-y-8 pl-8">
-                                     <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Nov 2022 - Oct 2026</p><h5 class="text-lg font-semibold text-white mt-1">Bachelor of Engineering, Naval Architecture & Offshore Engineering</h5><p class="text-md text-gray-400">Bangladesh Maritime University</p></div>
-                                     <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jun 2019 - Dec 2021</p><h5 class="text-lg font-semibold text-white mt-1">Higher Secondary School Certificate</h5><p class="text-md text-gray-400">Ghatail Cantonment Public School & College</p></div>
+                                    <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Nov 2022 - Oct 2026</p><h5 class="text-lg font-semibold text-white mt-1">Bachelor of Engineering, Naval Architecture & Offshore Engineering</h5><p class="text-md text-gray-400">Bangladesh Maritime University</p></div>
+                                    <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jun 2019 - Dec 2021</p><h5 class="text-lg font-semibold text-white mt-1">Higher Secondary School Certificate</h5><p class="text-md text-gray-400">Ghatail Cantonment Public School & College</p></div>
                                  </div>
                             </div>
                             <div class="border-t border-jet pt-6 mt-8 reveal">
@@ -406,17 +444,17 @@
                                  </ul>
                             </div>
                         </section>
-        
+    
                         <section id="services" class="content-section reveal">
                             <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">My Services</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-drafting-compass fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Design & Modeling</h4><p class="mt-1">Creating efficient ship designs with AutoCAD, Rhino 3D, Solidworks and Maxsurf.</p></div></div>
-                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-wave-square fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Engineering Analysis</h4><p class="mt-1">Performing complex simulations and structural analysis using ANSYS.</p></div></div>
-                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-code fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Scripting & Automation</h4><p class="mt-1">Developing custom scripts with Python and C++ to automate design tasks.</p></div></div>
-                                <div class="flex items-start space-x-4 reveal service-icon-container"><i class="service-icon fas fa-users-cog fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Team Leadership</h4><p class="mt-1">Leading and managing teams effectively to ensure project success.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-drafting-compass fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Design & Modeling</h4><p class="mt-1">Creating efficient ship designs with AutoCAD, Rhino 3D, Solidworks and Maxsurf.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-wave-square fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Engineering Analysis</h4><p class="mt-1">Performing complex simulations and structural analysis using ANSYS.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-code fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Scripting & Automation</h4><p class="mt-1">Developing custom scripts with Python and C++ to automate design tasks.</p></div></div>
+                                <div class="flex items-start space-x-4 reveal"><i class="service-icon fas fa-users-cog fa-2x text-lime-green mt-1"></i><div><h4 class="text-xl font-bold text-white">Team Leadership</h4><p class="mt-1">Leading and managing teams effectively to ensure project success.</p></div></div>
                             </div>
                         </section>
-        
+    
                         <section id="projects" class="content-section overflow-hidden reveal">
                             <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">Projects</h2>
                             <div class="swiper-container projects-slider">
@@ -424,53 +462,53 @@
                                     <div class="swiper-slide">
                                         <div class="project-card">
                                             <img src="image1.jpg" alt="Maxsurf Hull Design" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=Hull+Design';">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Maxsurf Hull Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Utilizing Maxsurf to create and refine high-performance hull forms.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Maxsurf Hull Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Utilizing Maxsurf to create and refine high-performance hull forms.</p><a href="#" class="animated-btn text-sm p-2 view-project-btn"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="project-card">
                                             <img src="image2.jpg" alt="CAESES Propeller Design" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=Propeller';">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CAESES Propeller Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Leveraging CAESES to design custom propeller geometries.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CAESES Propeller Design</h4><p class="text-sm text-light-gray flex-grow mb-4">Leveraging CAESES to design custom propeller geometries.</p<a href="#" class="animated-btn text-sm p-2 view-project-btn"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="project-card">
                                             <img src="image3.jpg" alt="Shell Expansion" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=Shell+Plan';">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Shell Expansion</h4><p class="text-sm text-light-gray flex-grow mb-4">Creating 2D shell expansion plans from 3D models.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">Shell Expansion</h4><p class="text-sm text-light-gray flex-grow mb-4">Creating 2D shell expansion plans from 3D models.</p><a href="#" class="animated-btn text-sm p-2 view-project-btn"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="project-card">
                                             <img src="image4.jpg" alt="CFD Analysis of Hull" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x200/312F36/AFFF0C?text=CFD+Analysis';">
-                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CFD Analysis of Hull</h4><p class="text-sm text-light-gray flex-grow mb-4">Conducting CFD simulations to analyze water flow.</p><a href="#" class="animated-btn text-sm p-2"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
+                                            <div class="p-4 flex flex-col flex-grow"><h4 class="text-lg font-bold text-white mb-2">CFD Analysis of Hull</h4><p class="text-sm text-light-gray flex-grow mb-4">Conducting CFD simulations to analyze water flow.</p><a href="#" class="animated-btn text-sm p-2 view-project-btn"><span></span><span></span><span></span><span></span>View <i class="fas fa-arrow-right btn-icon ml-1"></i></a></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                             </div>
                         </section>
-                        
+                         
                         <section id="experience" class="content-section reveal">
                              <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">Experience</h2>
                              <div class="border-l-2 border-jet space-y-8 pl-8">
-                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
-                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2024 - April 2025</p><h4 class="text-xl font-bold text-white mt-1">Assistant Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
-                                  <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2023 - April 2024</p><h4 class="text-xl font-bold text-white mt-1">Excecutive of Design & It</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
-                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Publicity Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
-                                  <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2024 - Dec 2024</p<h4 class="text-xl font-bold text-white mt-1">Design & IT Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
+                                <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
+                                <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2024 - April 2025</p><h4 class="text-xl font-bold text-white mt-1">Assistant Design & It Secretary</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
+                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">May 2023 - April 2024</p><h4 class="text-xl font-bold text-white mt-1">Excecutive of Design & It</h4><p class="text-md text-gray-400">MUDS - Maritime University Debating Society</p></div>
+                                <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2025 - Present</p><h4 class="text-xl font-bold text-white mt-1">Publicity Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
+                                 <div class="relative reveal"><div class="absolute -left-10 top-1 w-4 h-4 bg-lime-green rounded-full border-4 border-jet"></div><p class="text-sm text-light-gray">Jan 2024 - Dec 2024</p><h4 class="text-xl font-bold text-white mt-1">Design & IT Secretary</h4><p class="text-md text-gray-400">Prothom Alo Bondhushava- BMU</p></div>
                              </div>
                         </section>
-        
+    
                         <section id="contact" class="content-section reveal">
                             <h2 class="text-lime-green font-bold text-sm tracking-widest uppercase mb-4">Contact Me</h2>
                             <h3 class="text-4xl font-bold text-white mb-2">Let's Work Together!</h3>
                             <p class="mb-6">Have a project in mind or just want to say hi? Fill out the form below.</p>
-        
+    
                             <form id="contact-form" class="space-y-4">
                                 <input type="hidden" name="access_key" value="de182f8a-d20c-4713-bcd9-aa2db25e3795">
                                 <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
                                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-        
+    
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 rounded-lg">
                                     <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 rounded-lg">
@@ -489,35 +527,29 @@
         </div>
     </div>
     
+    <!-- Chat Bubble -->
+    <div id="chat-bubble">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window">
+        <div class="chat-header">
+            <h3 class="text-white font-bold">AI Assistant</h3>
+            <button id="close-chat">&times;</button>
+        </div>
+        <iframe
+            src="https://www.chatbase.co/chatbot-iframe/wfahk3mHUCQ99Gv4qC-II"
+            width="100%"
+            style="height: 100%; border: none;"
+        ></iframe>
+    </div>
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-             // --- ASTEROID CREATION ---
-            const asteroidContainer = document.getElementById('asteroid-container');
-            const numAsteroids = 20;
-
-            function createAsteroid() {
-                for (let i = 0; i < numAsteroids; i++) {
-                    const asteroid = document.createElement('div');
-                    asteroid.classList.add('asteroid');
-
-                    const size = Math.random() * 6 + 2; // Size between 2px and 8px
-                    const left = Math.random() * 100; // Random horizontal start
-                    const duration = Math.random() * 8 + 5; // Duration between 5s and 13s
-                    const delay = Math.random() * 10; // Delay up to 10s
-
-                    asteroid.style.width = `${size}px`;
-                    asteroid.style.height = `${size}px`;
-                    asteroid.style.left = `${left}vw`;
-                    asteroid.style.animationDuration = `${duration}s`;
-                    asteroid.style.animationDelay = `${delay}s`;
-
-                    asteroidContainer.appendChild(asteroid);
-                }
-            }
-
             // --- SCROLL-REVEAL ANIMATION ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -538,7 +570,7 @@
                 if (scrollableHeight > 0) {
                     const scrollProgress = window.scrollY / scrollableHeight;
                     const zoomLevel = 1 + scrollProgress * 0.25; 
-                    background.style.transform = `scale(${zoomLevel})`;
+                    background.style.transform = `translateX(-50%) translateY(-50%) scale(${zoomLevel})`;
                 }
             });
 
@@ -642,9 +674,21 @@
                 loop: true, smartBackspace: true
             });
 
-            // Set initial active tab and create asteroids
+            // --- CHAT BUBBLE LOGIC ---
+            const chatBubble = document.getElementById('chat-bubble');
+            const chatWindow = document.getElementById('chat-window');
+            const closeChat = document.getElementById('close-chat');
+
+            chatBubble.addEventListener('click', () => {
+                chatWindow.classList.toggle('visible');
+            });
+            
+            closeChat.addEventListener('click', () => {
+                chatWindow.classList.remove('visible');
+            });
+
+            // Set initial active tab
             switchTab('about');
-            createAsteroid();
         });
     </script>
 </body>
