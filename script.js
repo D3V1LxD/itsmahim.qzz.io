@@ -317,91 +317,44 @@ fadeInUpStyle.textContent = `
 `;
 document.head.appendChild(fadeInUpStyle);
 
-// Contact form handling with Web3Forms
-const contactForm = document.querySelector('.contact-form');
-contactForm?.addEventListener('submit', async function(e) {
+// Contact form handling with Web3Forms (Official Implementation)
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Get submit button for UI feedback
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    // Show loading state
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-    
-    try {
-        // Get form data
-        const formData = new FormData(this);
-        
-        // Send form data to Web3Forms
-        const response = await fetch('https://api.web3forms.com/submit', {
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    result.innerHTML = "Please wait..."
+
+    fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: formData
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            console.log('Email sent successfully:', result);
-            
-            // Show success state
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            submitBtn.style.background = 'var(--success)';
-            
-            // Reset form after 2 seconds
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = "Form submitted successfully";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
             setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-                this.reset();
-            }, 2000);
-            
-        } else {
-            throw new Error(result.message || 'Failed to send message');
-        }
-        
-    } catch (error) {
-        console.error('Email sending failed:', error);
-        
-        // Show error state
-        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed to Send';
-        submitBtn.style.background = '#ef4444';
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
-        }, 3000);
-    }
-});
-
-// Typing animation for hero text
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing animation
-document.addEventListener('DOMContentLoaded', () => {
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    if (heroSubtitle) {
-        const originalText = heroSubtitle.textContent;
-        setTimeout(() => {
-            typeWriter(heroSubtitle, originalText, 50);
-        }, 1000);
-    }
+                result.style.display = "none";
+            }, 3000);
+        });
 });
 
 // Parallax effect for floating cards

@@ -375,12 +375,10 @@
                 </div>
                 
                 <div class="contact-form-container">
-                    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <form method="POST" id="form" class="contact-form">
                         <!-- Web3Forms Configuration -->
                         <input type="hidden" name="access_key" value="de182f8a-d20c-4713-bcd9-aa2db25e3795">
-                        <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
-                        <input type="hidden" name="from_name" value="Portfolio Contact Form">
-                        <input type="hidden" name="redirect" value="false">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                         
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -423,6 +421,8 @@
                             <span>Send Message</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
+                        
+                        <div id="result"></div>
                     </form>
                 </div>
             </div>

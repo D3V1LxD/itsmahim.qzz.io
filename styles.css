@@ -918,6 +918,22 @@ textarea:focus {
     justify-content: center;
 }
 
+/* Result message styling */
+#result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    background: var(--gray-100);
+    color: var(--text-primary);
+    display: block;
+}
+
+#result:empty {
+    display: none;
+}
+
 /* Footer */
 .footer {
     background: var(--gray-900);
