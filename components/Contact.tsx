@@ -63,7 +63,7 @@ export default function Contact() {
             <span className="gradient-text">Get In Touch</span>
           </h2>
           <p className="text-textSecondary text-center mb-16 text-lg max-w-2xl mx-auto">
-            I'm always interested in collaborating on innovative maritime projects, discussing 
+            I&apos;m always interested in collaborating on innovative maritime projects, discussing 
             naval architecture challenges, or connecting with fellow engineering enthusiasts. 
             Feel free to reach out!
           </p>

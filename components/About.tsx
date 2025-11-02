@@ -44,13 +44,13 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <p className="text-textSecondary text-lg leading-relaxed">
-                I'm <span className="text-accent font-semibold">Md. Mahim Khan</span>, a dedicated 4th-year student 
+                I&apos;m <span className="text-accent font-semibold">Md. Mahim Khan</span>, a dedicated 4th-year student 
                 pursuing B.Sc. in Naval Architecture & Offshore Engineering at Bangladesh Maritime University.
               </p>
               
               <p className="text-textSecondary text-lg leading-relaxed">
                 With <span className="text-accent font-semibold">4+ years of academic experience</span>, 
-                I've developed a strong foundation in ship design, engineering analysis, and computational modeling. 
+                I&apos;ve developed a strong foundation in ship design, engineering analysis, and computational modeling. 
                 My passion lies in combining theoretical knowledge with practical applications to create innovative 
                 maritime solutions.
               </p>
