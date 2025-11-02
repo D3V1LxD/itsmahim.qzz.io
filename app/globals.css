@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0a192f;
+  --secondary: #112240;
+  --accent: #64ffda;
+  --text-primary: #ccd6f6;
+  --text-secondary: #8892b0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52d9bb;
+}
+
+/* Parallax Effect */
+.parallax {
+  transform-style: preserve-3d;
+}
+
+.parallax-layer {
+  transition: transform 0.3s ease-out;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(17, 34, 64, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #64ffda 0%, #4a9fff 50%, #ff6b9d 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 4s ease infinite;
+}
+
+/* Animated Background Gradient */
+.animated-gradient {
+  background: linear-gradient(-45deg, #0a192f, #112240, #1a365d, #2d3748);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glowing Border Animation */
+.glow-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--secondary), var(--secondary)) padding-box,
+              linear-gradient(135deg, #64ffda, #4a9fff, #ff6b9d) border-box;
+  animation: rotateBorder 3s linear infinite;
+}
+
+@keyframes rotateBorder {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Pulse Glow Effect */
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.3),
+                0 0 40px rgba(100, 255, 218, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.5),
+                0 0 60px rgba(100, 255, 218, 0.3),
+                0 0 80px rgba(100, 255, 218, 0.2);
+  }
+}
+
+/* Shimmer Effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(100, 255, 218, 0.3),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Neon Glow Text */
+.neon-text {
+  text-shadow: 
+    0 0 10px rgba(100, 255, 218, 0.8),
+    0 0 20px rgba(100, 255, 218, 0.6),
+    0 0 30px rgba(100, 255, 218, 0.4),
+    0 0 40px rgba(74, 159, 255, 0.3);
+  animation: neonFlicker 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Hover Glow Effect */
+.hover-glow {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.hover-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #64ffda, #4a9fff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-glow:hover::before {
+  opacity: 1;
+}
+
+/* Section Animations */
+.section-enter {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease-out;
+}
+
+.section-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
