@@ -4,6 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 
 const blogs = [
   {
+    title: 'General Arrangement Plan',
+    description: 'A comprehensive guide to understanding ship layout design, crew accommodation planning, and the essential components of a vessel\'s general arrangement. Explore different ship types and their unique layouts.',
+    date: 'October 2024',
+    readTime: '15 min read',
+    tags: ['Ship Design', 'GAP', 'Naval Architecture'],
+    link: '/blog/general-arrangement-plan',
+  },
+  {
     title: 'Understanding Ship Stability: A Naval Architect\'s Perspective',
     description: 'An in-depth exploration of ship stability principles, including metacentric height, righting moments, and stability curves. Learn how these concepts ensure vessel safety.',
     date: 'October 2024',
