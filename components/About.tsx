@@ -49,7 +49,7 @@ export default function About() {
               </p>
               
               <p className="text-textSecondary text-lg leading-relaxed">
-                With <span className="text-accent font-semibold">4+ years of academic experience</span>, 
+                With <span className="text-accent font-semibold">3+ years of academic experience</span>, 
                 I&apos;ve developed a strong foundation in ship design, engineering analysis, and computational modeling. 
                 My passion lies in combining theoretical knowledge with practical applications to create innovative 
                 maritime solutions.
@@ -78,7 +78,7 @@ export default function About() {
                   </li>
                   <li className="flex items-center">
                     <span className="text-accent mr-2">▹</span>
-                    4+ Years of Engineering Study
+                    3+ Years of Engineering Study
                   </li>
                 </ul>
               </div>
