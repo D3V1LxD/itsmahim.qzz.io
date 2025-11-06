@@ -91,7 +91,7 @@ export default function Blog() {
             {blogs.map((blog, index) => (
               <article
                 key={index}
-                className="glass p-6 rounded-2xl hover-glow transition-all duration-300 hover:scale-105 shimmer"
+                className="glass p-6 rounded-2xl hover-glow transition-all duration-300 hover:scale-105"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="mb-4">

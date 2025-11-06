@@ -72,7 +72,7 @@ export default function Skills() {
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="glass p-8 rounded-2xl hover-glow transition-all duration-300 hover:scale-105 shimmer"
+                className="glass p-8 rounded-2xl hover-glow transition-all duration-300 hover:scale-105"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="text-6xl mb-6 animate-float">{skill.icon}</div>

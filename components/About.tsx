@@ -88,7 +88,7 @@ export default function About() {
               {/* Profile Image */}
               <div className="mb-8">
                 <div className="relative w-full max-w-md mx-auto">
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 rounded-2xl blur-xl opacity-30"></div>
                   <img 
                     src="/profile.png" 
                     alt="Md. Mahim Khan" 

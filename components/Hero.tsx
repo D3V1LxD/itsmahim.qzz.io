@@ -48,11 +48,11 @@ export default function Hero() {
             {/* Profile Image */}
             <div className="animate-fadeIn order-2 md:order-1">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent to-blue-500 rounded-full blur-2xl opacity-20"></div>
                 <img 
                   src="/image.png" 
                   alt="Md. Mahim Khan" 
-                  className="relative rounded-full w-full max-w-md mx-auto shadow-2xl border-4 border-accent/30 hover:scale-105 transition-transform duration-300 animate-float"
+                  className="relative rounded-full w-full max-w-md mx-auto shadow-2xl border-4 border-accent/30 hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function Hero() {
               <h1 className="text-5xl md:text-7xl font-bold mb-4 gradient-text">
                 Md. Mahim Khan
               </h1>
-              <h2 className="text-3xl md:text-5xl font-bold text-textSecondary mb-6 shimmer">
+              <h2 className="text-3xl md:text-5xl font-bold text-textSecondary mb-6">
                 Aspiring Naval Architect
               </h2>
               <p className="text-xl text-textSecondary mb-8">
@@ -73,13 +73,13 @@ export default function Hero() {
               <div className="flex gap-4 justify-center md:justify-start">
                 <a
                   href="#projects"
-                  className="px-8 py-3 border-2 border-accent text-accent rounded-lg hover-glow hover:bg-accent hover:text-primary transition-all pulse-glow"
+                  className="px-8 py-3 border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-primary transition-all"
                 >
                   View My Work
                 </a>
                 <a
                   href="#contact"
-                  className="px-8 py-3 bg-accent text-primary rounded-lg hover:bg-opacity-90 transition-all shimmer pulse-glow"
+                  className="px-8 py-3 bg-accent text-primary rounded-lg hover:bg-opacity-90 transition-all"
                 >
                   Get In Touch
                 </a>

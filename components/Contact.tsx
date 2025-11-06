@@ -92,7 +92,7 @@ export default function Contact() {
           <div className="text-center">
             <a
               href="mailto:mahim.naoe@gmail.com"
-              className="inline-block px-12 py-4 bg-accent text-primary rounded-lg font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition-all pulse-glow shimmer"
+              className="inline-block px-12 py-4 bg-accent text-primary rounded-lg font-bold text-lg hover:bg-opacity-90 hover:scale-105 transition-all"
             >
               Connect With Me
             </a>

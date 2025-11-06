@@ -21,11 +21,7 @@ export default function Navigation() {
         isScrolled ? 'glass py-4' : 'bg-transparent py-6'
       }`}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link href="#home" className="text-2xl font-bold gradient-text">
-          MK
-        </Link>
-        
+      <div className="container mx-auto px-6 flex justify-end items-center">
         <div className="hidden md:flex space-x-8">
           <Link href="#about" className="hover:text-accent transition-colors">
             About
