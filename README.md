@@ -2,6 +2,8 @@
 
 A modern, responsive portfolio website showcasing the work and expertise of Md. Mahim Khan, a 4th-year Naval Architecture & Offshore Engineering student at Bangladesh Maritime University.
 
+_Last updated: December 8, 2025_
+
 ## 🚀 Features
 
 - **Modern Design**: Clean, professional interface with smooth animations
