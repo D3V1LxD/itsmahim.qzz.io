@@ -60,11 +60,11 @@ const getProviderIcon = (provider: string) => {
 const getProviderColor = (provider: string) => {
   switch (provider.toLowerCase()) {
     case 'linkedin learning':
-      return 'from-blue-500 to-blue-600';
+      return 'from-[#64ffda] to-cyan-500';
     case 'udemy':
-      return 'from-purple-500 to-purple-600';
+      return 'from-purple-500 to-pink-500';
     default:
-      return 'from-green-500 to-green-600';
+      return 'from-[#64ffda] to-blue-500';
   }
 };
 
@@ -97,13 +97,13 @@ export default function Certifications() {
     <section
       id="certifications"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden"
+      className="py-20 bg-[#0a192f] relative overflow-hidden"
     >
       {/* Background decoration */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#64ffda] rounded-full filter blur-3xl animate-blob"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-cyan-500 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -112,11 +112,11 @@ export default function Certifications() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#64ffda] to-cyan-400 bg-clip-text text-transparent">
             Certifications
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-          <p className="mt-6 text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-[#64ffda] to-cyan-400 mx-auto rounded-full"></div>
+          <p className="mt-6 text-[#8892b0] text-lg max-w-2xl mx-auto">
             Continuous learning and professional development in cutting-edge technologies
           </p>
         </div>
@@ -125,7 +125,7 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <div
               key={cert.id}
-              className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden ${
+              className={`group bg-[#112240] rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#64ffda]/20 transition-all duration-500 overflow-hidden border border-[#233554] hover:border-[#64ffda]/50 ${
                 isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-10'
@@ -158,12 +158,12 @@ export default function Certifications() {
 
               {/* Content */}
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                <h4 className="text-xl font-bold text-[#ccd6f6] mb-3 group-hover:text-[#64ffda] transition-colors">
                   {cert.title}
                 </h4>
 
                 <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-gray-600 text-sm">
+                  <div className="flex items-center text-[#8892b0] text-sm">
                     <svg
                       className="w-4 h-4 mr-2"
                       fill="none"
@@ -182,7 +182,7 @@ export default function Certifications() {
                   </div>
 
                   {cert.instructor && (
-                    <div className="flex items-center text-gray-600 text-sm">
+                    <div className="flex items-center text-[#8892b0] text-sm">
                       <svg
                         className="w-4 h-4 mr-2"
                         fill="none"
@@ -202,7 +202,7 @@ export default function Certifications() {
                   )}
 
                   {cert.issuer && (
-                    <div className="flex items-start text-gray-600 text-sm">
+                    <div className="flex items-start text-[#8892b0] text-sm">
                       <svg
                         className="w-4 h-4 mr-2 mt-0.5"
                         fill="none"
@@ -224,10 +224,10 @@ export default function Certifications() {
                   )}
 
                   {cert.certificateId && (
-                    <div className="flex items-center text-gray-600 text-sm">
+                    <div className="flex items-center text-[#8892b0] text-sm">
                       <FaCertificate className="w-4 h-4 mr-2" />
                       <span className="font-medium">Certificate ID:</span>
-                      <span className="ml-2 font-mono text-xs bg-gray-100 px-2 py-1 rounded">
+                      <span className="ml-2 font-mono text-xs bg-[#0a192f] text-[#64ffda] px-2 py-1 rounded">
                         {cert.certificateId}
                       </span>
                     </div>
@@ -249,7 +249,7 @@ export default function Certifications() {
                 )}
 
                 {!cert.link && (
-                  <div className="inline-flex items-center justify-center w-full bg-gray-100 text-gray-600 px-4 py-3 rounded-lg font-medium">
+                  <div className="inline-flex items-center justify-center w-full bg-[#0a192f] text-[#64ffda] border border-[#64ffda]/30 px-4 py-3 rounded-lg font-medium">
                     <FaCertificate className="mr-2" />
                     <span>Certified</span>
                   </div>
