@@ -32,6 +32,9 @@ export default function Navigation() {
           <Link href="#projects" className="hover:text-accent transition-colors">
             Projects
           </Link>
+          <Link href="#certifications" className="hover:text-accent transition-colors">
+            Certifications
+          </Link>
           <Link href="#blog" className="hover:text-accent transition-colors">
             Blog
           </Link>
