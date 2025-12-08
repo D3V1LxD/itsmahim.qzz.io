@@ -24,7 +24,7 @@ const certifications: Certification[] = [
     date: '06/12/2025',
     mode: 'Online',
     instructor: 'Muhammad Moin',
-    link: 'https://www.udemy.com/certificate/UC-db13fc87-bad5-4736-ac8e-82fbfe8766f8',
+    link: '/3803c23d-db46-43a5-af43-b5950f280121.pdf',
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const certifications: Certification[] = [
     provider: 'LinkedIn Learning',
     date: '28/06/2025',
     mode: 'Online',
-    link: 'https://www.linkedin.com/learning/solidworks-2024-essential-training',
+    link: '/CertificateOfCompletion_SOLIDWORKS 2024 Essential Training.pdf',
   },
   {
     id: 3,
@@ -42,6 +42,7 @@ const certifications: Certification[] = [
     mode: 'Online',
     certificateId: '1002903',
     issuer: 'VIPESH SINGLA, MBA - Co-founder Agile Enterprise Coach',
+    link: '/Md Mahim Khan - Project Manager Certification - Certificate.pdf',
   },
 ];
 
