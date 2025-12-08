@@ -157,12 +157,12 @@ export default function Certifications() {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-6 flex flex-col h-full">
                 <h4 className="text-xl font-bold text-[#ccd6f6] mb-3 group-hover:text-[#64ffda] transition-colors">
                   {cert.title}
                 </h4>
 
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-4 flex-grow">
                   <div className="flex items-center text-[#8892b0] text-sm">
                     <svg
                       className="w-4 h-4 mr-2"
@@ -201,6 +201,8 @@ export default function Certifications() {
                     </div>
                   )}
 
+                  {!cert.instructor && <div className="h-5"></div>}
+
                   {cert.issuer && (
                     <div className="flex items-start text-[#8892b0] text-sm">
                       <svg
@@ -223,6 +225,8 @@ export default function Certifications() {
                     </div>
                   )}
 
+                  {!cert.issuer && <div className="h-10"></div>}
+
                   {cert.certificateId && (
                     <div className="flex items-center text-[#8892b0] text-sm">
                       <FaCertificate className="w-4 h-4 mr-2" />
@@ -232,28 +236,32 @@ export default function Certifications() {
                       </span>
                     </div>
                   )}
+
+                  {!cert.certificateId && <div className="h-5"></div>}
                 </div>
 
-                {cert.link && (
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${getProviderColor(
-                      cert.provider
-                    )} text-white px-4 py-3 rounded-lg font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300`}
-                  >
-                    <span>View Certificate</span>
-                    <FaExternalLinkAlt className="ml-2 text-sm" />
-                  </a>
-                )}
+                <div className="mt-auto">
+                  {cert.link && (
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${getProviderColor(
+                        cert.provider
+                      )} text-white px-4 py-3 rounded-lg font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300`}
+                    >
+                      <span>View Certificate</span>
+                      <FaExternalLinkAlt className="ml-2 text-sm" />
+                    </a>
+                  )}
 
-                {!cert.link && (
-                  <div className="inline-flex items-center justify-center w-full bg-[#0a192f] text-[#64ffda] border border-[#64ffda]/30 px-4 py-3 rounded-lg font-medium">
-                    <FaCertificate className="mr-2" />
-                    <span>Certified</span>
-                  </div>
-                )}
+                  {!cert.link && (
+                    <div className="inline-flex items-center justify-center w-full bg-[#0a192f] text-[#64ffda] border border-[#64ffda]/30 px-4 py-3 rounded-lg font-medium">
+                      <FaCertificate className="mr-2" />
+                      <span>Certified</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
