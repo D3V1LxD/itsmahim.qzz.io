@@ -23,6 +23,7 @@ const certifications: Certification[] = [
     provider: 'Udemy',
     date: '06/12/2025',
     mode: 'Online',
+    certificateId: '3803c23d-db46-43a5-af43-b5950f280121',
     instructor: 'Muhammad Moin',
     link: '/3803c23d-db46-43a5-af43-b5950f280121.pdf',
   },
@@ -125,7 +126,7 @@ export default function Certifications() {
           {certifications.map((cert, index) => (
             <div
               key={cert.id}
-              className={`group bg-[#112240] rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#64ffda]/20 transition-all duration-500 overflow-hidden border border-[#233554] hover:border-[#64ffda]/50 ${
+              className={`group bg-[#112240] rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#64ffda]/20 transition-all duration-500 overflow-hidden border border-[#233554] hover:border-[#64ffda]/50 flex flex-col ${
                 isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-10'
@@ -157,7 +158,7 @@ export default function Certifications() {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col h-full">
+              <div className="p-6 flex flex-col flex-grow">
                 <h4 className="text-xl font-bold text-[#ccd6f6] mb-3 group-hover:text-[#64ffda] transition-colors">
                   {cert.title}
                 </h4>
