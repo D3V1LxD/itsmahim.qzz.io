@@ -32,6 +32,8 @@ const certifications: Certification[] = [
     title: 'SOLIDWORKS 2024 Essential Training',
     provider: 'LinkedIn Learning',
     date: '28/06/2025',
+    certificateId: '2df3faf0beed0f1c142cace3f25a682fffb69b391e21aee14ff3da5e94a7f24a',
+    instructor: 'Gabriel Corbett',
     mode: 'Online',
     link: '/CertificateOfCompletion_SOLIDWORKS 2024 Essential Training.pdf',
   },
@@ -202,8 +204,6 @@ export default function Certifications() {
                     </div>
                   )}
 
-                  {!cert.instructor && <div className="h-5"></div>}
-
                   {cert.issuer && (
                     <div className="flex items-start text-[#8892b0] text-sm">
                       <svg
@@ -226,8 +226,6 @@ export default function Certifications() {
                     </div>
                   )}
 
-                  {!cert.issuer && <div className="h-10"></div>}
-
                   {cert.certificateId && (
                     <div className="flex items-center text-[#8892b0] text-sm">
                       <FaCertificate className="w-4 h-4 mr-2" />
@@ -237,8 +235,6 @@ export default function Certifications() {
                       </span>
                     </div>
                   )}
-
-                  {!cert.certificateId && <div className="h-5"></div>}
                 </div>
 
                 <div className="mt-auto">
